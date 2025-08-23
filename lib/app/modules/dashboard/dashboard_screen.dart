@@ -1,0 +1,110 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../routes/app_pages.dart';
+import 'dashboard_controller.dart';
+
+class DashboardScreen extends GetView<DashboardController> {
+  const DashboardScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Obx(() {
+          if (controller.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return SingleChildScrollView(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildHeader(controller.user.value.name),
+                const SizedBox(height: 30),
+                const Text(
+                  "Explore your learning journey",
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 20),
+                _buildDashboardCard(
+                  context,
+                  icon: Icons.library_books,
+                  title: 'All Subjects',
+                  subtitle: 'Find and join your next course',
+                  onTap: () {
+                    Get.toNamed(Routes.SUBJECTS);
+                  },
+                ),
+                _buildDashboardCard(
+                  context,
+                  icon: Icons.history_edu,
+                  title: 'My Tests',
+                  subtitle: 'Review your past test results',
+                  onTap: () {
+                    Get.toNamed(Routes.MY_TESTS);
+                  },
+                ),
+                _buildDashboardCard(
+                  context,
+                  icon: Icons.star,
+                  title: 'Favorites',
+                  subtitle: 'See your favorite teachers & tests',
+                  onTap: () {
+                    Get.toNamed(Routes.FAVORITES);
+                  },
+                ),
+              ],
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  Widget _buildHeader(String userName) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text("Welcome back,", style: TextStyle(fontSize: 16)),
+            Text(
+              "$userName!",
+              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        // IconButton(
+        // icon: const Icon(Icons.notifications_none, size: 28),
+        // onPressed: () {},
+        // ),
+      ],
+    );
+  }
+
+  Widget _buildDashboardCard(
+    BuildContext context, {
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 20),
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 15,
+        ),
+        leading: Icon(icon, size: 40, color: Color(0xff29a4d9)),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text(subtitle),
+        trailing: const Icon(Icons.arrow_forward_ios),
+        onTap: onTap,
+      ),
+    );
+  }
+}
