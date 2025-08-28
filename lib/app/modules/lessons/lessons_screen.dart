@@ -10,7 +10,9 @@ class LessonsScreen extends GetView<LessonsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: Text(
           'Lessons by ${controller.teacherName}',
@@ -48,6 +50,7 @@ class LessonsScreen extends GetView<LessonsController> {
             itemBuilder: (context, index) {
               final lesson = controller.lessonList[index];
               return Card(
+                color: Colors.white,
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 child: ListTile(
                   leading: const Icon(Icons.play_circle_outline, size: 40),

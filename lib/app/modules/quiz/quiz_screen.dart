@@ -9,7 +9,9 @@ class QuizScreen extends GetView<QuizController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Obx(() {
           if (controller.status.value == QuizStatus.ready) {
             return Text(

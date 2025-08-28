@@ -9,7 +9,9 @@ class MyTestsScreen extends GetView<MyTestsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
           'My Tests',
@@ -39,6 +41,7 @@ class MyTestsScreen extends GetView<MyTestsController> {
 
   Widget _buildTestHistoryCard(BuildContext context, TestHistory test) {
     return Card(
+      color: Colors.white,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: ListTile(
         leading: const Icon(Icons.history_edu, color: Color(0xff29a4d9)),

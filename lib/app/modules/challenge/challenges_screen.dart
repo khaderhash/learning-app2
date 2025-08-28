@@ -11,10 +11,16 @@ class ChallengesScreen extends GetView<ChallengesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Challenges')),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text('Challenges'),
+        backgroundColor: Colors.white,
+      ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+          );
         }
         if (controller.challengeList.isEmpty) {
           return const Center(
@@ -44,6 +50,7 @@ class ChallengesScreen extends GetView<ChallengesController> {
         controller.teachersMap[challenge.teacherId] ?? 'Unknown Teacher';
 
     return Card(
+      color: Colors.white,
       margin: const EdgeInsets.all(10),
       child: ListTile(
         leading: Icon(

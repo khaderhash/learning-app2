@@ -9,7 +9,11 @@ class TeacherProfileScreen extends GetView<TeacherProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(controller.teacher.name)),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text(controller.teacher.name),
+        backgroundColor: Colors.white,
+      ),
       body: Obx(() {
         final profile = controller.fullProfile.value;
         final details = profile.details;

@@ -10,7 +10,9 @@ class SubjectsScreen extends GetView<SubjectsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
           'All Subjects',
@@ -46,6 +48,7 @@ class SubjectsScreen extends GetView<SubjectsController> {
 
   Widget _buildSubjectCard(BuildContext context, Subject subject) {
     return Card(
+      color: Colors.white,
       margin: const EdgeInsets.only(bottom: 15),
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

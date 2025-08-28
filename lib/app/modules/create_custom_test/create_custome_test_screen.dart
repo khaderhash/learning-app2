@@ -8,7 +8,9 @@ class CreateCustomTestScreen extends GetView<CreateCustomTestController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
           'Create Custom Test',

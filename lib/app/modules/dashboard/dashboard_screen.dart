@@ -9,10 +9,13 @@ class DashboardScreen extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Obx(() {
           if (controller.isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+              child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+            );
           }
           return SingleChildScrollView(
             padding: const EdgeInsets.all(20.0),
@@ -136,6 +139,7 @@ class DashboardScreen extends GetView<DashboardController> {
     required VoidCallback onTap,
   }) {
     return Card(
+      color: Colors.white,
       margin: const EdgeInsets.only(bottom: 20),
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

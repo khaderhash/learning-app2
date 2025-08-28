@@ -9,7 +9,9 @@ class ChallengeQuizScreen extends GetView<ChallengeQuizController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Obx(() {
           if (controller.status.value == ChallengeQuizStatus.ready) {
             return Text(

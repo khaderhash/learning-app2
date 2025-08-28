@@ -11,7 +11,9 @@ class ProfileScreen extends GetView<ProfileController> {
     final DashboardController dashboardController =
         Get.find<DashboardController>();
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
           'Profile',
@@ -111,6 +113,7 @@ class ProfileScreen extends GetView<ProfileController> {
 
   Widget _buildProfileInfoTile(String title, String subtitle) {
     return Card(
+      color: Colors.white,
       child: ListTile(
         title: Text(title),
         subtitle: Text(subtitle, style: const TextStyle(fontSize: 16)),

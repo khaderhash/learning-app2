@@ -9,7 +9,9 @@ class NotificationsScreen extends GetView<NotificationsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: const Text('Notifications'),
         actions: [
           Padding(
@@ -38,14 +40,14 @@ class NotificationsScreen extends GetView<NotificationsController> {
                 () => ListTile(
                   tileColor: notification.isRead.value
                       ? Colors.transparent
-                      : Get.theme.primaryColor.withOpacity(0.1),
+                      : Colors.white,
                   leading: Icon(
                     notification.isRead.value
                         ? Icons.notifications_off_outlined
                         : Icons.notifications_active,
                     color: notification.isRead.value
                         ? Colors.grey
-                        : Get.theme.primaryColor,
+                        : Color(0xff29a4d9),
                   ),
                   title: Text(
                     notification.title,

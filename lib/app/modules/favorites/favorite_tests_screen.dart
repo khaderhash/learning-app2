@@ -10,12 +10,16 @@ class FavoriteTestsScreen extends GetView<FavoriteTestsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text('Favorite Tests by ${controller.teacherName},'),
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+          );
         }
         if (controller.favoriteTestsList.isEmpty) {
           return const Center(
@@ -29,6 +33,7 @@ class FavoriteTestsScreen extends GetView<FavoriteTestsController> {
             itemBuilder: (context, index) {
               final test = controller.favoriteTestsList[index];
               return Card(
+                color: Colors.white,
                 margin: const EdgeInsets.all(10),
                 child: ListTile(
                   leading: const Icon(

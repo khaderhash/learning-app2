@@ -18,7 +18,9 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text(
           controller.lesson.title,
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -226,6 +228,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
 
   Widget _buildCommentItem(Comment comment, {bool isReply = false}) {
     return Card(
+      color: Colors.white,
       margin: EdgeInsets.only(left: isReply ? 40.0 : 0, top: 8, right: 8),
       child: Padding(
         padding: const EdgeInsets.all(12.0),

@@ -10,7 +10,12 @@ class TeachersScreen extends GetView<TeachersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: Text(controller.subjectTitle)),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text(controller.subjectTitle),
+      ),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
@@ -36,6 +41,7 @@ class TeachersScreen extends GetView<TeachersController> {
 
   Widget _buildTeacherCard(BuildContext context, Teacher teacher) {
     return Card(
+      color: Colors.white,
       margin: const EdgeInsets.all(10),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
