@@ -11,8 +11,12 @@ import '../modules/create_custom_test/create_custome_binding.dart';
 import '../modules/create_custom_test/create_custome_test_screen.dart';
 import '../modules/main_screen/main_screen.dart';
 import '../modules/main_screen/main_screen_binding.dart';
+import '../modules/notifications/notifications_binding.dart';
+import '../modules/notifications/notifications_screen.dart';
 import '../modules/subjects/subjects_binding.dart';
 import '../modules/subjects/subjects_screen.dart';
+import '../modules/teacher_profile/teacher_profile_binding.dart';
+import '../modules/teacher_profile/teacher_profile_screen.dart';
 import '../modules/teachers/teachers_binding.dart';
 import '../modules/teachers/teachers_screen.dart';
 import '../modules/lessons/lessons_binding.dart';
@@ -115,6 +119,16 @@ class AppPages {
       name: _Paths.CHALLENGE_QUIZ,
       page: () => const ChallengeQuizScreen(),
       binding: ChallengeQuizBinding(),
+    ),
+    GetPage(
+      name: _Paths.TEACHER_PROFILE,
+      page: () => const TeacherProfileScreen(),
+      binding: TeacherProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATIONS,
+      page: () => const NotificationsScreen(),
+      binding: NotificationsBinding(),
     ),
   ];
 }

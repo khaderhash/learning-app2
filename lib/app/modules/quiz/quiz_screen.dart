@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/quiz_model.dart';
-import '../../data/models/quiz_models.dart';
 import 'quiz_controller.dart';
 
 class QuizScreen extends GetView<QuizController> {

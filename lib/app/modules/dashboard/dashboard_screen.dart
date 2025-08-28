@@ -84,10 +84,46 @@ class DashboardScreen extends GetView<DashboardController> {
             ),
           ],
         ),
-        // IconButton(
-        // icon: const Icon(Icons.notifications_none, size: 28),
-        // onPressed: () {},
-        // ),
+
+        Stack(
+          clipBehavior: Clip.none,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.notifications_none, size: 32),
+              onPressed: () => Get.toNamed(Routes.NOTIFICATIONS),
+            ),
+
+            Obx(
+              () => controller.unreadNotifications.value > 0
+                  ? Positioned(
+                      right: 6,
+                      top: 6,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.white, width: 1),
+                        ),
+                        constraints: const BoxConstraints(
+                          minWidth: 18,
+                          minHeight: 18,
+                        ),
+                        child: Text(
+                          controller.unreadNotifications.value.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+            ),
+          ],
+        ),
       ],
     );
   }

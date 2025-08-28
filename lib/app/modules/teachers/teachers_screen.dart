@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/teacher_model.dart';
 import '../../routes/app_pages.dart';
-import '../lessons/lessons_screen.dart';
 import 'teachers_controller.dart';
 
 class TeachersScreen extends GetView<TeachersController> {
@@ -11,13 +10,7 @@ class TeachersScreen extends GetView<TeachersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          controller.subjectTitle,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        ),
-      ),
+      appBar: AppBar(centerTitle: true, title: Text(controller.subjectTitle)),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
@@ -58,22 +51,46 @@ class TeachersScreen extends GetView<TeachersController> {
                     ? const Icon(Icons.person, color: Colors.white)
                     : null,
               ),
-              title: Text(teacher.name),
-              subtitle: const Text('Tap to view lessons (after approval)'),
-              onTap: () {
-                Get.toNamed(
-                  Routes.LESSONS,
-                  arguments: {
-                    'teacherId': teacher.id,
-                    'teacherName': teacher.name,
-                    'subjectId': controller.subjectId,
-                    'subjectTitle': controller.subjectTitle,
-                  },
-                );
-              },
+              title: Text(
+                teacher.name,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: TextButton.icon(
+                style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                icon: const Icon(
+                  Icons.person_search_outlined,
+                  size: 18,
+                  color: Color(0xff29a4d9),
+                ),
+                label: const Text(
+                  'View Profile & Rate',
+                  style: TextStyle(color: Color(0xff29a4d9)),
+                ),
+                onPressed: () {
+                  Get.toNamed(
+                    Routes.TEACHER_PROFILE,
+                    arguments: {'teacher': teacher},
+                  );
+                },
+              ),
+              trailing: IconButton(
+                icon: const Icon(Icons.video_library_outlined),
+                tooltip: 'View Lessons',
+                onPressed: () {
+                  Get.toNamed(
+                    Routes.LESSONS,
+                    arguments: {
+                      'teacherId': teacher.id,
+                      'teacherName': teacher.name,
+                      'subjectId': controller.subjectId,
+                      'subjectTitle': controller.subjectTitle,
+                    },
+                  );
+                },
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Obx(
                 () => ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(

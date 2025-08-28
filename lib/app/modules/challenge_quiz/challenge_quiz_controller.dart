@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/quiz_model.dart';
 import '../../data/providers/challenge_provider.dart';
+import '../../data/providers/points_provider.dart';
 import '../quiz/quiz_result_screen.dart';
 
 enum ChallengeQuizStatus { loading, ready, submitting, finished, error }
 
 class ChallengeQuizController extends GetxController {
   final ChallengeProvider _provider = ChallengeProvider();
+  final PointsProvider _pointsProvider = PointsProvider();
 
   final int challengeId = Get.arguments['challengeId'];
 
@@ -43,6 +45,21 @@ class ChallengeQuizController extends GetxController {
     }
   }
 
+  Future<void> submitChallenge() async {
+    try {
+      status.value = ChallengeQuizStatus.submitting;
+      final result = await _provider.submitChallenge(challengeId, answers);
+
+      final points = await _pointsProvider.getStudentPoints();
+
+      status.value = ChallengeQuizStatus.finished;
+      Get.off(() => QuizResultScreen(result: result, points: points));
+    } catch (e) {
+      errorMessage.value = e.toString();
+      status.value = ChallengeQuizStatus.error;
+    }
+  }
+
   void selectAnswer(int questionId, int optionId) {
     answers[questionId] = optionId;
   }
@@ -56,17 +73,17 @@ class ChallengeQuizController extends GetxController {
     }
   }
 
-  Future<void> submitChallenge() async {
-    try {
-      status.value = ChallengeQuizStatus.submitting;
-      final result = await _provider.submitChallenge(challengeId, answers);
-      status.value = ChallengeQuizStatus.finished;
-      Get.off(() => QuizResultScreen(result: result));
-    } catch (e) {
-      errorMessage.value = e.toString();
-      status.value = ChallengeQuizStatus.error;
-    }
-  }
+  // Future<void> submitChallenge() async {
+  //   try {
+  //     status.value = ChallengeQuizStatus.submitting;
+  //     final result = await _provider.submitChallenge(challengeId, answers);
+  //     status.value = ChallengeQuizStatus.finished;
+  //     Get.off(() => QuizResultScreen(result: result));
+  //   } catch (e) {
+  //     errorMessage.value = e.toString();
+  //     status.value = ChallengeQuizStatus.error;
+  //   }
+  // }
 
   @override
   void onClose() {

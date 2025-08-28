@@ -20,6 +20,7 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import '../../services/storage_service.dart';
 import '../models/teacher_model.dart';
+import '../models/teacher_profile_model.dart';
 
 class TeacherProvider {
   final String _baseUrl = 'http://10.0.2.2:8000/api';
@@ -53,6 +54,50 @@ class TeacherProvider {
     } else {
       throw Exception(
         jsonDecode(response.body)['message'] ?? 'Failed to load all teachers',
+      );
+    }
+  }
+
+  Future<TeacherProfile> getTeacherProfile(int teacherId) async {
+    final url = Uri.parse('$_baseUrl/get/profile/teacher/$teacherId');
+    final response = await http.get(url, headers: await _getHeaders());
+    if (response.statusCode == 200) {
+      return TeacherProfile.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(
+        jsonDecode(response.body)['message'] ??
+            'Failed to load teacher profile',
+      );
+    }
+  }
+
+  Future<String> rateTeacher(int teacherId, int rating) async {
+    final url = Uri.parse('$_baseUrl/add/rating/$teacherId');
+    var request = http.MultipartRequest('POST', url)
+      ..headers.addAll(await _getHeaders())
+      ..fields['rating'] = rating.toString();
+
+    final response = await http.Response.fromStream(await request.send());
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body)['message'];
+    } else {
+      throw Exception(
+        jsonDecode(response.body)['message'] ?? 'Failed to submit rating',
+      );
+    }
+  }
+
+  Future<TeacherProfile> getTeacherProfileDetails(int teacherId) async {
+    final url = Uri.parse('$_baseUrl/get/profile/teacher/$teacherId');
+    final response = await http.get(url, headers: await _getHeaders());
+    if (response.statusCode == 200) {
+      return TeacherProfile.fromJson(jsonDecode(response.body));
+    } else if (response.statusCode == 404) {
+      return TeacherProfile();
+    } else {
+      throw Exception(
+        jsonDecode(response.body)['message'] ??
+            'Failed to load teacher profile',
       );
     }
   }

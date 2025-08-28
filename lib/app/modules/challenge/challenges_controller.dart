@@ -43,7 +43,6 @@ class ChallengesController extends GetxController {
       final challenges = results[0] as List<Challenge>;
       final teachers = results[1] as List<Teacher>;
 
-      // تحويل قائمة المدرسين إلى Map لسهولة البحث
       teachersMap.value = {
         for (var teacher in teachers) teacher.id: teacher.name,
       };

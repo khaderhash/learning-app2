@@ -19,6 +19,8 @@ abstract class Routes {
   static const FAVORITE_TESTS = _Paths.FAVORITE_TESTS;
   static const CHALLENGE_QUIZ = _Paths.CHALLENGE_QUIZ;
   static const CHALLENGES = _Paths.CHALLENGES;
+  static const TEACHER_PROFILE = _Paths.TEACHER_PROFILE;
+  static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
 }
 
 abstract class _Paths {
@@ -38,4 +40,6 @@ abstract class _Paths {
   static const FAVORITE_TESTS = '/favorite-tests';
   static const CHALLENGES = '/challenges';
   static const CHALLENGE_QUIZ = '/challenge-quiz';
+  static const TEACHER_PROFILE = '/teacher-profile';
+  static const NOTIFICATIONS = '/notifications';
 }
