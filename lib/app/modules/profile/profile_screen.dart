@@ -64,6 +64,17 @@ class ProfileScreen extends GetView<ProfileController> {
               _buildProfileInfoTile('Phone', user.phone),
               const Divider(height: 40),
               ListTile(
+                leading: const Icon(Icons.reviews_outlined),
+                title: const Text('Rate Your Teachers'),
+                onTap: () {
+                  // Get.toNamed(Routes.RATE_TEACHERS);
+                  Get.snackbar(
+                    'Coming Soon',
+                    'This feature is under development.',
+                  );
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.logout, color: Colors.red),
                 title: const Text(
                   'Logout',

@@ -17,6 +17,8 @@ abstract class Routes {
   static const CREATE_CUSTOM_TEST = _Paths.CREATE_CUSTOM_TEST;
   static const FAVORITES = _Paths.FAVORITES;
   static const FAVORITE_TESTS = _Paths.FAVORITE_TESTS;
+  static const CHALLENGE_QUIZ = _Paths.CHALLENGE_QUIZ;
+  static const CHALLENGES = _Paths.CHALLENGES;
 }
 
 abstract class _Paths {
@@ -34,4 +36,6 @@ abstract class _Paths {
   static const CREATE_CUSTOM_TEST = '/create-custom-test';
   static const FAVORITES = '/favorites';
   static const FAVORITE_TESTS = '/favorite-tests';
+  static const CHALLENGES = '/challenges';
+  static const CHALLENGE_QUIZ = '/challenge-quiz';
 }

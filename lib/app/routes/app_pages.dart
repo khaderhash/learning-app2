@@ -3,6 +3,10 @@ import '../modules/auth/auth_binding.dart';
 import '../modules/auth/login_screen.dart';
 import '../modules/auth/signup_screen.dart';
 import '../modules/browse_questions/browse_question_screen.dart';
+import '../modules/challenge/challenges_binding.dart';
+import '../modules/challenge/challenges_screen.dart';
+import '../modules/challenge_quiz/challenge_quiz_binding.dart';
+import '../modules/challenge_quiz/challenge_quiz_screen.dart';
 import '../modules/create_custom_test/create_custome_binding.dart';
 import '../modules/create_custom_test/create_custome_test_screen.dart';
 import '../modules/main_screen/main_screen.dart';
@@ -101,6 +105,16 @@ class AppPages {
       name: _Paths.FAVORITE_TESTS,
       page: () => const FavoriteTestsScreen(),
       binding: FavoriteTestsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHALLENGES,
+      page: () => const ChallengesScreen(),
+      binding: ChallengesBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHALLENGE_QUIZ,
+      page: () => const ChallengeQuizScreen(),
+      binding: ChallengeQuizBinding(),
     ),
   ];
 }

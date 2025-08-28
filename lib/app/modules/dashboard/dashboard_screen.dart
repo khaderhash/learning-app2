@@ -53,6 +53,15 @@ class DashboardScreen extends GetView<DashboardController> {
                     Get.toNamed(Routes.FAVORITES);
                   },
                 ),
+                _buildDashboardCard(
+                  context,
+                  icon: Icons.emoji_events_outlined,
+                  title: 'Challenges',
+                  subtitle: 'Compete and test your knowledge',
+                  onTap: () {
+                    Get.toNamed(Routes.CHALLENGES);
+                  },
+                ),
               ],
             ),
           );

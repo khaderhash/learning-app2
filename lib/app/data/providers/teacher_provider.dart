@@ -42,4 +42,18 @@ class TeacherProvider {
       );
     }
   }
+
+  Future<List<Teacher>> getAllTeachers() async {
+    final url = Uri.parse('$_baseUrl/get/teachers');
+    final response = await http.get(url, headers: await _getHeaders());
+
+    if (response.statusCode == 200) {
+      final List<dynamic> teacherJsonList = jsonDecode(response.body);
+      return teacherJsonList.map((json) => Teacher.fromJson(json)).toList();
+    } else {
+      throw Exception(
+        jsonDecode(response.body)['message'] ?? 'Failed to load all teachers',
+      );
+    }
+  }
 }
