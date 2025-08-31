@@ -24,7 +24,7 @@ class TeacherProfileScreen extends GetView<TeacherProfileController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                backgroundColor: Color(0xff29a4d9),
+                backgroundColor: Color(0xff8B5CF6),
                 radius: 50,
                 backgroundImage: profile.baseInfo.profileImageUrl != null
                     ? NetworkImage(profile.baseInfo.profileImageUrl!)

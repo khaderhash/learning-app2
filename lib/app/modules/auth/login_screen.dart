@@ -16,7 +16,7 @@ class LoginScreen extends GetView<AuthController> {
         title: const Text(
           'Login',
           style: TextStyle(
-            color: Color(0xff29a4d9),
+            color: Color(0xff8B5CF6),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -26,6 +26,7 @@ class LoginScreen extends GetView<AuthController> {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
+        const value2 = 0xff8B5CF6;
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -47,7 +48,7 @@ class LoginScreen extends GetView<AuthController> {
                 height: MediaQuery.of(context).size.height * .06,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff29a4d9),
+                    backgroundColor: const Color(0xff8B5CF6),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -60,7 +61,7 @@ class LoginScreen extends GetView<AuthController> {
                 onPressed: () => Get.to(() => const SignUpScreen()),
                 child: const Text(
                   "Don't have an account? Sign Up",
-                  style: TextStyle(color: Color(0xff29a4d9)),
+                  style: TextStyle(color: Color(value2)),
                 ),
               ),
             ],
@@ -94,7 +95,7 @@ class LoginScreen extends GetView<AuthController> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Color(0xff29a4d9), width: 1.8),
+          borderSide: const BorderSide(color: Color(0xff8B5CF6), width: 1.8),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

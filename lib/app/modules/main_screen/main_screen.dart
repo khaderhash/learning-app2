@@ -19,7 +19,7 @@ class MainScreen extends GetView<MainScreenController> {
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
-          selectedItemColor: Color(0xff29a4d9),
+          selectedItemColor: Color(0xff8B5CF6),
           unselectedItemColor: Colors.grey,
           backgroundColor: Colors.white,
           currentIndex: controller.tabIndex.value,
@@ -27,13 +27,13 @@ class MainScreen extends GetView<MainScreenController> {
           items: const [
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
-              icon: Icon(Icons.home, color: Color(0xff29a4d9)),
+              icon: Icon(Icons.home, color: Color(0xff8B5CF6)),
               label: 'Home',
             ),
 
             BottomNavigationBarItem(
               backgroundColor: Colors.white,
-              icon: Icon(Icons.person, color: Color(0xff29a4d9)),
+              icon: Icon(Icons.person, color: Color(0xff8B5CF6)),
               label: 'Profile',
             ),
           ],

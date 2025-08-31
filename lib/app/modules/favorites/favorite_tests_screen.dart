@@ -18,7 +18,7 @@ class FavoriteTestsScreen extends GetView<FavoriteTestsController> {
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(
-            child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
           );
         }
         if (controller.favoriteTestsList.isEmpty) {
@@ -38,7 +38,7 @@ class FavoriteTestsScreen extends GetView<FavoriteTestsController> {
                 child: ListTile(
                   leading: const Icon(
                     Icons.quiz_outlined,
-                    color: Color(0xff29a4d9),
+                    color: Color(0xff8B5CF6),
                   ),
                   title: Text('Favorite Test #${test.testId}'),
                   subtitle: Text('${test.questions.length} Questions'),

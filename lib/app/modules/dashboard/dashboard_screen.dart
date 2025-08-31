@@ -14,7 +14,7 @@ class DashboardScreen extends GetView<DashboardController> {
         child: Obx(() {
           if (controller.isLoading.value) {
             return const Center(
-              child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+              child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
             );
           }
           return SingleChildScrollView(
@@ -148,7 +148,7 @@ class DashboardScreen extends GetView<DashboardController> {
           vertical: 10,
           horizontal: 15,
         ),
-        leading: Icon(icon, size: 40, color: Color(0xff29a4d9)),
+        leading: Icon(icon, size: 40, color: Color(0xff8B5CF6)),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(subtitle),
         trailing: const Icon(Icons.arrow_forward_ios),

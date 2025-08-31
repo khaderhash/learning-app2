@@ -32,7 +32,7 @@ class BrowseQuestionsScreen extends GetView<BrowseQuestionsController> {
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(
-            child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
           );
         }
         if (controller.questionList.isEmpty) {
@@ -41,7 +41,7 @@ class BrowseQuestionsScreen extends GetView<BrowseQuestionsController> {
           );
         }
         return RefreshIndicator(
-          color: Color(0xff29a4d9),
+          color: Color(0xff8B5CF6),
           onRefresh: controller.fetchQuestions,
           child: ListView.builder(
             padding: const EdgeInsets.all(16),

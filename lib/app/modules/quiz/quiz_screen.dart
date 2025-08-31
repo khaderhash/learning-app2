@@ -9,14 +9,13 @@ class QuizScreen extends GetView<QuizController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Obx(() {
           if (controller.status.value == QuizStatus.ready) {
             return Text(
               'Question ${controller.currentPage.value + 1} of ${controller.currentTestSession.questions.length}',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
@@ -26,35 +25,46 @@ class QuizScreen extends GetView<QuizController> {
         }),
         centerTitle: true,
       ),
-      body: Obx(() {
-        switch (controller.status.value) {
-          case QuizStatus.loading:
-            return const Center(child: CircularProgressIndicator());
-          case QuizStatus.error:
-            return Center(child: Text(controller.errorMessage.value));
-          case QuizStatus.ready:
-          case QuizStatus.submitting:
-            return Column(
-              children: [
-                Expanded(
-                  child: PageView.builder(
-                    controller: controller.pageController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.currentTestSession.questions.length,
-                    itemBuilder: (context, index) {
-                      return _buildQuestionPage(
-                        controller.currentTestSession.questions[index],
-                      );
-                    },
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF9F7CC5), Color(0xFFFFFFFF)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Obx(() {
+          switch (controller.status.value) {
+            case QuizStatus.loading:
+              return const Center(child: CircularProgressIndicator());
+            case QuizStatus.error:
+              return Center(child: Text(controller.errorMessage.value));
+            case QuizStatus.ready:
+            case QuizStatus.submitting:
+              return Column(
+                children: [
+                  Expanded(
+                    child: PageView.builder(
+                      controller: controller.pageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.currentTestSession.questions.length,
+                      itemBuilder: (context, index) {
+                        return _buildQuestionPage(
+                          controller.currentTestSession.questions[index],
+                        );
+                      },
+                    ),
                   ),
-                ),
-                _buildBottomButton(context),
-              ],
-            );
-          default:
-            return const SizedBox.shrink();
-        }
-      }),
+                  _buildBottomButton(context),
+                ],
+              );
+            default:
+              return const SizedBox.shrink();
+          }
+        }),
+      ),
     );
   }
 
@@ -106,7 +116,6 @@ class QuizScreen extends GetView<QuizController> {
             .questions[controller.currentPage.value]
             .id,
       );
-
       return Padding(
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).size.width * .12,
@@ -114,7 +123,6 @@ class QuizScreen extends GetView<QuizController> {
         child: SizedBox(
           width: MediaQuery.of(context).size.width * .33,
           height: MediaQuery.of(context).size.height * .06,
-
           child: ElevatedButton(
             onPressed: isAnswered
                 ? (isLastQuestion ? controller.submitTest : controller.nextPage)

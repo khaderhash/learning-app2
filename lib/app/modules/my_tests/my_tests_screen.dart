@@ -44,10 +44,10 @@ class MyTestsScreen extends GetView<MyTestsController> {
       color: Colors.white,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: ListTile(
-        leading: const Icon(Icons.history_edu, color: Color(0xff29a4d9)),
+        leading: const Icon(Icons.history_edu, color: Color(0xff8B5CF6)),
         title: Text(
           'Test #${test.testId}',
-          style: TextStyle(color: Color(0xff29a4d9)),
+          style: TextStyle(color: Color(0xff8B5CF6)),
         ),
         subtitle: Text('Subject ID: ${test.subjectId}'),
         trailing: const Icon(Icons.arrow_forward_ios),

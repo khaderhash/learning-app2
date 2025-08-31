@@ -68,7 +68,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
             SliverPersistentHeader(
               delegate: _SliverAppBarDelegate(
                 const TabBar(
-                  indicatorColor: Color(0xff29a4d9),
+                  indicatorColor: Color(0xff8B5CF6),
                   labelColor: Colors.black,
                   tabs: [
                     Tab(text: 'Summary (PDF)'),
@@ -109,7 +109,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
           TextButton(
             child: const Text(
               'Browse Questions',
-              style: TextStyle(color: Color(0xff29a4d9)),
+              style: TextStyle(color: Color(0xff8B5CF6)),
             ),
             onPressed: () {
               Get.back();
@@ -156,14 +156,14 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
           child: Obx(() {
             if (controller.isLoading.value) {
               return const Center(
-                child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+                child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
               );
             }
             if (controller.commentList.isEmpty) {
               return const Center(child: Text('Be the first to comment!'));
             }
             return RefreshIndicator(
-              color: Color(0xff29a4d9),
+              color: Color(0xff8B5CF6),
               onRefresh: controller.fetchComments,
               child: ListView.builder(
                 padding: const EdgeInsets.all(8.0),
@@ -193,7 +193,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                   hintText: c.replyingToCommentId == null
                       ? 'Add a public comment...'
                       : 'Replying...',
-                  hintStyle: TextStyle(color: Color(0xff29a4d9)),
+                  hintStyle: TextStyle(color: Color(0xff8B5CF6)),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(25.0)),
                   ),
@@ -208,7 +208,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                         height: 24,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          color: Color(0xff29a4d9),
+                          color: Color(0xff8B5CF6),
                         ),
                       )
                     : const Icon(Icons.send),
@@ -238,7 +238,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: Color(0xff29a4d9),
+                  backgroundColor: Color(0xff8B5CF6),
                   child: Text(
                     comment.user.name.substring(0, 1).toUpperCase(),
                     style: TextStyle(color: Colors.white),
@@ -249,7 +249,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                   comment.user.name,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff29a4d9),
+                    color: Color(0xff8B5CF6),
                   ),
                 ),
                 const Spacer(),
@@ -265,7 +265,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                     onPressed: () => controller.startReplying(comment.id),
                     child: const Text(
                       'Reply',
-                      style: TextStyle(color: Color(0xff29a4d9)),
+                      style: TextStyle(color: Color(0xff8B5CF6)),
                     ),
                   ),
                 if (!isReply)
@@ -280,12 +280,12 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                               height: 16,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,
-                                color: Color(0xff29a4d9),
+                                color: Color(0xff8B5CF6),
                               ),
                             )
                           : Text(
                               'View replies',
-                              style: TextStyle(color: Color(0xff29a4d9)),
+                              style: TextStyle(color: Color(0xff8B5CF8B5CF6)),
                             ),
                     ),
                   ),

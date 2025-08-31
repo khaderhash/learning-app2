@@ -49,7 +49,7 @@ class TeachersScreen extends GetView<TeachersController> {
           children: [
             ListTile(
               leading: CircleAvatar(
-                backgroundColor: Color(0xff29a4d9),
+                backgroundColor: Color(0xff8B5CF6),
                 backgroundImage: teacher.profileImageUrl != null
                     ? NetworkImage(teacher.profileImageUrl!)
                     : null,
@@ -66,11 +66,11 @@ class TeachersScreen extends GetView<TeachersController> {
                 icon: const Icon(
                   Icons.person_search_outlined,
                   size: 18,
-                  color: Color(0xff29a4d9),
+                  color: Color(0xff8B5CF6),
                 ),
                 label: const Text(
                   'View Profile & Rate',
-                  style: TextStyle(color: Color(0xff29a4d9)),
+                  style: TextStyle(color: Color(0xff8B5CF6)),
                 ),
                 onPressed: () {
                   Get.toNamed(

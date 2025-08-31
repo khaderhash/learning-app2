@@ -47,7 +47,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
                         : Icons.notifications_active,
                     color: notification.isRead.value
                         ? Colors.grey
-                        : Color(0xff29a4d9),
+                        : Color(0xff8B5CF6),
                   ),
                   title: Text(
                     notification.title,

@@ -23,7 +23,7 @@ class ProfileScreen extends GetView<ProfileController> {
       body: Obx(() {
         if (dashboardController.isLoading.value || controller.isLoading.value) {
           return const Center(
-            child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
           );
         }
         final user = controller.user.value;
@@ -36,7 +36,7 @@ class ProfileScreen extends GetView<ProfileController> {
                 child: Stack(
                   children: [
                     CircleAvatar(
-                      backgroundColor: Color(0xff29a4d9),
+                      backgroundColor: Color(0xff8B5CF6),
                       radius: 60,
                       backgroundImage: user.imageUrl != null
                           ? NetworkImage(user.imageUrl!)
@@ -86,7 +86,7 @@ class ProfileScreen extends GetView<ProfileController> {
                   Get.defaultDialog(
                     title: "Confirm Logout",
                     titleStyle: const TextStyle(
-                      color: Color(0xff29a4d9),
+                      color: Color(0xff8B5CF6),
                       fontWeight: FontWeight.bold,
                     ),
                     middleText: "Are you sure you want to logout?",
@@ -95,7 +95,7 @@ class ProfileScreen extends GetView<ProfileController> {
                     cancelTextColor: Colors.black54,
                     textConfirm: "Logout",
                     confirmTextColor: Colors.white,
-                    buttonColor: Color(0xff29a4d9),
+                    buttonColor: Color(0xff8B5CF6),
                     radius: 12,
                     onConfirm: () {
                       Get.back();

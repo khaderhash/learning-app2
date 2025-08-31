@@ -32,7 +32,7 @@ class LessonsScreen extends GetView<LessonsController> {
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(
-            child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
           );
         }
         if (controller.lessonList.isEmpty) {
@@ -43,7 +43,7 @@ class LessonsScreen extends GetView<LessonsController> {
           );
         }
         return RefreshIndicator(
-          color: Color(0xff29a4d9),
+          color: Color(0xff8B5CF6),
           onRefresh: controller.fetchLessons,
           child: ListView.builder(
             itemCount: controller.lessonList.length,
@@ -75,7 +75,7 @@ class LessonsScreen extends GetView<LessonsController> {
           TextButton(
             child: const Text(
               'Browse Questions',
-              style: TextStyle(color: Color(0xff29a4d9)),
+              style: TextStyle(color: Color(0xff8B5CF6)),
             ),
             onPressed: () {
               Get.back();
@@ -88,7 +88,7 @@ class LessonsScreen extends GetView<LessonsController> {
           TextButton(
             child: const Text(
               'Watch Video',
-              style: TextStyle(color: Color(0xff29a4d9)),
+              style: TextStyle(color: Color(0xff8B5CF)),
             ),
             onPressed: () {
               Get.back();

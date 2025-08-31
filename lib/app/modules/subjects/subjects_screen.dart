@@ -22,7 +22,7 @@ class SubjectsScreen extends GetView<SubjectsController> {
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(
-            child: CircularProgressIndicator(color: Color(0xff29a4d9)),
+            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
           );
         }
         if (controller.subjectList.isEmpty) {
@@ -31,7 +31,7 @@ class SubjectsScreen extends GetView<SubjectsController> {
           );
         }
         return RefreshIndicator(
-          color: Color(0xff29a4d9),
+          color: Color(0xff8B5CF6),
           onRefresh: controller.fetchSubjects,
           child: ListView.builder(
             padding: const EdgeInsets.all(10),

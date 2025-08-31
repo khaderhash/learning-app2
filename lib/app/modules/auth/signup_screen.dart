@@ -15,7 +15,7 @@ class SignUpScreen extends GetView<AuthController> {
         title: const Text(
           'Sign Up',
           style: TextStyle(
-            color: Color(0xff29a4d9),
+            color: Color(0xff8B5CF6),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -56,7 +56,7 @@ class SignUpScreen extends GetView<AuthController> {
                 height: MediaQuery.of(context).size.height * .06,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff29a4d9),
+                    backgroundColor: const Color(0xff8B5CF6),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -69,7 +69,7 @@ class SignUpScreen extends GetView<AuthController> {
                 onPressed: () => Get.back(),
                 child: const Text(
                   'Already have an account? Login',
-                  style: TextStyle(color: Color(0xff29a4d9)),
+                  style: TextStyle(color: Color(0xff8B5CF6)),
                 ),
               ),
             ],
