@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../utils/helpers.dart';
 import 'create_custom_test_controller.dart';
 
 class CreateCustomTestScreen extends GetView<CreateCustomTestController> {
@@ -12,9 +13,9 @@ class CreateCustomTestScreen extends GetView<CreateCustomTestController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Create Custom Test',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
       ),
       body: ListView(
@@ -48,10 +49,10 @@ class CreateCustomTestScreen extends GetView<CreateCustomTestController> {
                 ? null
                 : controller.generateTest,
             child: controller.isLoading.value
-                ? const SizedBox(
+                ? SizedBox(
                     width: 20,
                     height: 20,
-                    child: CircularProgressIndicator(color: Colors.white),
+                    child: CircularProgressIndicator(color: primaryColor),
                   )
                 : const Text('Generate Test'),
           ),

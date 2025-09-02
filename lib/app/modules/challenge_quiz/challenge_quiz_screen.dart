@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/quiz_model.dart';
+import '../../utils/helpers.dart';
 import 'challenge_quiz_controller.dart';
 
 class ChallengeQuizScreen extends GetView<ChallengeQuizController> {
@@ -25,7 +26,9 @@ class ChallengeQuizScreen extends GetView<ChallengeQuizController> {
       body: Obx(() {
         switch (controller.status.value) {
           case ChallengeQuizStatus.loading:
-            return const Center(child: CircularProgressIndicator());
+            return Center(
+              child: CircularProgressIndicator(color: primaryColor),
+            );
           case ChallengeQuizStatus.error:
             return Center(
               child: Padding(
@@ -95,9 +98,9 @@ class ChallengeQuizScreen extends GetView<ChallengeQuizController> {
   Widget _buildBottomButton() {
     return Obx(() {
       if (controller.status.value == ChallengeQuizStatus.submitting) {
-        return const Padding(
-          padding: EdgeInsets.all(24),
-          child: CircularProgressIndicator(),
+        return Padding(
+          padding: const EdgeInsets.all(24),
+          child: CircularProgressIndicator(color: primaryColor),
         );
       }
       final isLastQuestion =

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/subject_model.dart';
 import '../../routes/app_pages.dart';
+import '../../utils/helpers.dart';
 import 'subjects_controller.dart';
 
 class SubjectsScreen extends GetView<SubjectsController> {
@@ -14,24 +15,25 @@ class SubjectsScreen extends GetView<SubjectsController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'All Subjects',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(fontWeight: FontWeight.bold, color: primaryColor),
         ),
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(
-            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
-          );
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         if (controller.subjectList.isEmpty) {
-          return const Center(
-            child: Text('There are no subjects available at the moment.'),
+          return Center(
+            child: Text(
+              'There are no subjects available at the moment.',
+              style: TextStyle(color: primaryColor),
+            ),
           );
         }
         return RefreshIndicator(
-          color: Color(0xff8B5CF6),
+          color: primaryColor,
           onRefresh: controller.fetchSubjects,
           child: ListView.builder(
             padding: const EdgeInsets.all(10),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import '../../utils/helpers.dart';
 import 'teacher_profile_controller.dart';
 
 class TeacherProfileScreen extends GetView<TeacherProfileController> {
@@ -11,7 +12,10 @@ class TeacherProfileScreen extends GetView<TeacherProfileController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(controller.teacher.name),
+        title: Text(
+          controller.teacher.name,
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.white,
       ),
       body: Obx(() {
@@ -24,7 +28,7 @@ class TeacherProfileScreen extends GetView<TeacherProfileController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CircleAvatar(
-                backgroundColor: Color(0xff8B5CF6),
+                backgroundColor: primaryColor,
                 radius: 50,
                 backgroundImage: profile.baseInfo.profileImageUrl != null
                     ? NetworkImage(profile.baseInfo.profileImageUrl!)
@@ -82,15 +86,18 @@ class TeacherProfileScreen extends GetView<TeacherProfileController> {
               const SizedBox(height: 20),
               Obx(
                 () => ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                  ),
                   onPressed: controller.isSubmittingRating.value
                       ? null
                       : controller.submitRating,
                   child: controller.isSubmittingRating.value
-                      ? const SizedBox(
+                      ? SizedBox(
                           height: 25,
                           width: 25,
                           child: CircularProgressIndicator(
-                            color: Colors.white,
+                            color: primaryColor,
                             strokeWidth: 2,
                           ),
                         )

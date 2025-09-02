@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/points_model.dart';
 import '../../routes/app_pages.dart';
+import '../../utils/helpers.dart';
 
 class QuizResultScreen extends StatelessWidget {
   final Map<String, int> result;
@@ -17,21 +18,25 @@ class QuizResultScreen extends StatelessWidget {
     final total = correct + incorrect;
     final double scorePercentage = total > 0 ? (correct / total) * 100 : 0;
     final bool isPassed = scorePercentage >= 50;
-    const Color primaryColor = Color(0xff8B5CF6);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Quiz Result'),
-        backgroundColor: primaryColor,
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          'Quiz Result',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
         automaticallyImplyLeading: false,
       ),
+      extendBodyBehindAppBar: true,
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF9F7CC5), Color(0xFFFFFFFF)],
+            colors: [primaryColor, const Color(0xFFFFFFFF)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -48,7 +53,7 @@ class QuizResultScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,
-                  vertical: 30,
+                  vertical: 40,
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -104,11 +109,14 @@ class QuizResultScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primaryColor,
                           padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                         icon: const Icon(Icons.home_outlined),
                         label: const Text(
                           'Return to Home Page',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                         onPressed: () => Get.offAllNamed(Routes.MAIN),
                       ),

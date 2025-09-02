@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:student_app2/app/modules/auth/widget/CustomTextField.dart';
+import '../../utils/helpers.dart';
 import 'auth_controller.dart';
 import 'signup_screen.dart';
 
@@ -13,20 +14,16 @@ class LoginScreen extends GetView<AuthController> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text(
+        title: Text(
           'Login',
-          style: TextStyle(
-            color: Color(0xff8B5CF6),
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
-        const value2 = 0xff8B5CF6;
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -48,7 +45,7 @@ class LoginScreen extends GetView<AuthController> {
                 height: MediaQuery.of(context).size.height * .06,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff8B5CF6),
+                    backgroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -59,9 +56,9 @@ class LoginScreen extends GetView<AuthController> {
               ),
               TextButton(
                 onPressed: () => Get.to(() => const SignUpScreen()),
-                child: const Text(
+                child: Text(
                   "Don't have an account? Sign Up",
-                  style: TextStyle(color: Color(value2)),
+                  style: TextStyle(color: primaryColor),
                 ),
               ),
             ],
@@ -95,7 +92,7 @@ class LoginScreen extends GetView<AuthController> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Color(0xff8B5CF6), width: 1.8),
+          borderSide: BorderSide(color: primaryColor, width: 1.8),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

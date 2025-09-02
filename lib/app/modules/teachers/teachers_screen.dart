@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/teacher_model.dart';
 import '../../routes/app_pages.dart';
+import '../../utils/helpers.dart';
 import 'teachers_controller.dart';
 
 class TeachersScreen extends GetView<TeachersController> {
@@ -14,11 +15,14 @@ class TeachersScreen extends GetView<TeachersController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text(controller.subjectTitle),
+        title: Text(
+          controller.subjectTitle,
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         if (controller.teacherList.isEmpty) {
           return const Center(
@@ -49,7 +53,7 @@ class TeachersScreen extends GetView<TeachersController> {
           children: [
             ListTile(
               leading: CircleAvatar(
-                backgroundColor: Color(0xff8B5CF6),
+                backgroundColor: primaryColor,
                 backgroundImage: teacher.profileImageUrl != null
                     ? NetworkImage(teacher.profileImageUrl!)
                     : null,
@@ -63,14 +67,14 @@ class TeachersScreen extends GetView<TeachersController> {
               ),
               subtitle: TextButton.icon(
                 style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                icon: const Icon(
+                icon: Icon(
                   Icons.person_search_outlined,
                   size: 18,
-                  color: Color(0xff8B5CF6),
+                  color: primaryColor,
                 ),
-                label: const Text(
+                label: Text(
                   'View Profile & Rate',
-                  style: TextStyle(color: Color(0xff8B5CF6)),
+                  style: TextStyle(color: primaryColor),
                 ),
                 onPressed: () {
                   Get.toNamed(
@@ -100,15 +104,16 @@ class TeachersScreen extends GetView<TeachersController> {
               child: Obx(
                 () => ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
                     minimumSize: const Size.fromHeight(40),
                   ),
                   icon: controller.isRequestingJoin.value
-                      ? const SizedBox(
+                      ? SizedBox(
                           width: 20,
                           height: 20,
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
-                            color: Colors.white,
+                            color: primaryColor,
                           ),
                         )
                       : const Icon(Icons.add_circle_outline),

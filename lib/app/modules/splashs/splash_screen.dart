@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/helpers.dart';
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: CircularProgressIndicator(color: Color(0xff8B5CF6))),
+    return Scaffold(
+      body: Center(child: CircularProgressIndicator(color: primaryColor)),
     );
   }
 }

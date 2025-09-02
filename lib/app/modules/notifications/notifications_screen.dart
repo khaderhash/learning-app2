@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../../utils/helpers.dart';
 import 'notifications_controller.dart';
 
 class NotificationsScreen extends GetView<NotificationsController> {
@@ -11,21 +12,25 @@ class NotificationsScreen extends GetView<NotificationsController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.white,
-        title: const Text('Notifications'),
+        title: Text(
+          'Notifications',
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: IconButton(
               onPressed: controller.markAllAsRead,
-              icon: Icon(Icons.check),
+              icon: Icon(Icons.check, color: primaryColor),
             ),
           ),
         ],
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         if (controller.notificationList.isEmpty) {
           return const Center(child: Text('You have no notifications.'));
@@ -47,7 +52,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
                         : Icons.notifications_active,
                     color: notification.isRead.value
                         ? Colors.grey
-                        : Color(0xff8B5CF6),
+                        : primaryColor,
                   ),
                   title: Text(
                     notification.title,

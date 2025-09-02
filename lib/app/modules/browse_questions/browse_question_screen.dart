@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/quiz_model.dart';
 import '../../data/models/quiz_models.dart';
+import '../../utils/helpers.dart';
 import 'browse_questions_controller.dart';
 
 class BrowseQuestionsScreen extends GetView<BrowseQuestionsController> {
@@ -14,9 +15,9 @@ class BrowseQuestionsScreen extends GetView<BrowseQuestionsController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Browse Questions',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(20.0),
@@ -31,9 +32,7 @@ class BrowseQuestionsScreen extends GetView<BrowseQuestionsController> {
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(
-            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
-          );
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         if (controller.questionList.isEmpty) {
           return const Center(
@@ -41,7 +40,7 @@ class BrowseQuestionsScreen extends GetView<BrowseQuestionsController> {
           );
         }
         return RefreshIndicator(
-          color: Color(0xff8B5CF6),
+          color: primaryColor,
           onRefresh: controller.fetchQuestions,
           child: ListView.builder(
             padding: const EdgeInsets.all(16),

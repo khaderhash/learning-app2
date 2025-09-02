@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../data/models/challenge_model.dart';
 import '../../routes/app_pages.dart';
+import '../../utils/helpers.dart';
 import 'challenges_controller.dart';
 
 class ChallengesScreen extends GetView<ChallengesController> {
@@ -13,18 +14,23 @@ class ChallengesScreen extends GetView<ChallengesController> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Challenges'),
+        centerTitle: true,
+        title: Text(
+          'Challenges',
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.white,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(
-            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
-          );
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         if (controller.challengeList.isEmpty) {
-          return const Center(
-            child: Text('No challenges available for you yet.'),
+          return Center(
+            child: Text(
+              'No challenges available for you yet.',
+              style: TextStyle(color: primaryColor),
+            ),
           );
         }
         return RefreshIndicator(

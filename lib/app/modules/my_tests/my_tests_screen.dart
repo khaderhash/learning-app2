@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/test_history_model.dart';
+import '../../utils/helpers.dart';
 import 'my_tests_controller.dart';
 
 class MyTestsScreen extends GetView<MyTestsController> {
@@ -13,14 +14,14 @@ class MyTestsScreen extends GetView<MyTestsController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'My Tests',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         if (controller.testHistoryList.isEmpty) {
           return const Center(child: Text('You have not taken any tests yet.'));
@@ -44,10 +45,10 @@ class MyTestsScreen extends GetView<MyTestsController> {
       color: Colors.white,
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: ListTile(
-        leading: const Icon(Icons.history_edu, color: Color(0xff8B5CF6)),
+        leading: Icon(Icons.history_edu, color: primaryColor),
         title: Text(
           'Test #${test.testId}',
-          style: TextStyle(color: Color(0xff8B5CF6)),
+          style: TextStyle(color: primaryColor),
         ),
         subtitle: Text('Subject ID: ${test.subjectId}'),
         trailing: const Icon(Icons.arrow_forward_ios),

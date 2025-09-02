@@ -14,6 +14,7 @@ class SplashController extends GetxController {
 
   Future<void> _checkAuthStatus() async {
     await Future.delayed(const Duration(seconds: 2));
+    Get.offAllNamed(Routes.LOGIN);
     try {
       final token = await storageService.getToken();
 

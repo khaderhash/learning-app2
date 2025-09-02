@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/teacher_model.dart';
+import '../../utils/helpers.dart';
 import 'favorites_controller.dart';
 import '../../routes/app_pages.dart';
 
@@ -13,17 +14,15 @@ class FavoriteTeachersScreen extends GetView<FavoritesController> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text(
+        title: Text(
           'My Favorite Teachers',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(
-            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
-          );
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         if (controller.favoriteTeachersList.isEmpty) {
           return const Center(
@@ -47,12 +46,12 @@ class FavoriteTeachersScreen extends GetView<FavoritesController> {
   Widget _buildTeacherCard(BuildContext context, Teacher teacher) {
     return Card(
       color: Colors.white,
-      margin: const EdgeInsets.all(10),
+      margin: EdgeInsets.all(10),
       child: ListTile(
         leading: CircleAvatar(
           child: Text(
             teacher.name.substring(0, 1),
-            style: TextStyle(color: Color(0xff8B5CF6)),
+            style: TextStyle(color: primaryColor),
           ),
           backgroundColor: Colors.white,
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../routes/app_pages.dart';
+import '../../utils/helpers.dart';
 import 'dashboard_controller.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
@@ -9,66 +10,76 @@ class DashboardScreen extends GetView<DashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
-        child: Obx(() {
-          if (controller.isLoading.value) {
-            return const Center(
-              child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
-            );
-          }
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(controller.user.value.name),
-                const SizedBox(height: 30),
-                const Text(
-                  "Explore your learning journey",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-                _buildDashboardCard(
-                  context,
-                  icon: Icons.library_books,
-                  title: 'All Subjects',
-                  subtitle: 'Find and join your next course',
-                  onTap: () {
-                    Get.toNamed(Routes.SUBJECTS);
-                  },
-                ),
-                _buildDashboardCard(
-                  context,
-                  icon: Icons.history_edu,
-                  title: 'My Tests',
-                  subtitle: 'Review your past test results',
-                  onTap: () {
-                    Get.toNamed(Routes.MY_TESTS);
-                  },
-                ),
-                _buildDashboardCard(
-                  context,
-                  icon: Icons.star,
-                  title: 'Favorites',
-                  subtitle: 'See your favorite teachers & tests',
-                  onTap: () {
-                    Get.toNamed(Routes.FAVORITES);
-                  },
-                ),
-                _buildDashboardCard(
-                  context,
-                  icon: Icons.emoji_events_outlined,
-                  title: 'Challenges',
-                  subtitle: 'Compete and test your knowledge',
-                  onTap: () {
-                    Get.toNamed(Routes.CHALLENGES);
-                  },
-                ),
-              ],
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFF008080), Colors.white],
             ),
-          );
-        }),
+          ),
+          child: Obx(() {
+            if (controller.isLoading.value) {
+              return Center(
+                child: CircularProgressIndicator(color: primaryColor),
+              );
+            }
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildHeader(controller.user.value.name),
+                  const SizedBox(height: 30),
+                  const Text(
+                    "Explore your learning journey",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 20),
+                  _buildDashboardCard(
+                    context,
+                    icon: Icons.library_books,
+                    title: 'All Subjects',
+                    subtitle: 'Find and join your next course',
+                    onTap: () {
+                      Get.toNamed(Routes.SUBJECTS);
+                    },
+                  ),
+                  _buildDashboardCard(
+                    context,
+                    icon: Icons.history_edu,
+                    title: 'My Tests',
+                    subtitle: 'Review your past test results',
+                    onTap: () {
+                      Get.toNamed(Routes.MY_TESTS);
+                    },
+                  ),
+                  _buildDashboardCard(
+                    context,
+                    icon: Icons.star,
+                    title: 'Favorites',
+                    subtitle: 'See your favorite teachers & tests',
+                    onTap: () {
+                      Get.toNamed(Routes.FAVORITES);
+                    },
+                  ),
+                  _buildDashboardCard(
+                    context,
+                    icon: Icons.emoji_events_outlined,
+                    title: 'Challenges',
+                    subtitle: 'Compete and test your knowledge',
+                    onTap: () {
+                      Get.toNamed(Routes.CHALLENGES);
+                    },
+                  ),
+                ],
+              ),
+            );
+          }),
+        ),
       ),
     );
   }
@@ -87,7 +98,6 @@ class DashboardScreen extends GetView<DashboardController> {
             ),
           ],
         ),
-
         Stack(
           clipBehavior: Clip.none,
           children: [
@@ -95,7 +105,6 @@ class DashboardScreen extends GetView<DashboardController> {
               icon: const Icon(Icons.notifications_none, size: 32),
               onPressed: () => Get.toNamed(Routes.NOTIFICATIONS),
             ),
-
             Obx(
               () => controller.unreadNotifications.value > 0
                   ? Positioned(
@@ -148,7 +157,7 @@ class DashboardScreen extends GetView<DashboardController> {
           vertical: 10,
           horizontal: 15,
         ),
-        leading: Icon(icon, size: 40, color: Color(0xff8B5CF6)),
+        leading: Icon(icon, size: 40, color: primaryColor),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text(subtitle),
         trailing: const Icon(Icons.arrow_forward_ios),

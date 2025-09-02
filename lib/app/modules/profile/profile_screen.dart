@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../utils/helpers.dart';
 import '../dashboard/dashboard_controller.dart';
 import 'profile_controller.dart';
 
@@ -15,16 +16,15 @@ class ProfileScreen extends GetView<ProfileController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Profile',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
       ),
       body: Obx(() {
         if (dashboardController.isLoading.value || controller.isLoading.value) {
-          return const Center(
-            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
-          );
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         final user = controller.user.value;
         return RefreshIndicator(
@@ -36,7 +36,7 @@ class ProfileScreen extends GetView<ProfileController> {
                 child: Stack(
                   children: [
                     CircleAvatar(
-                      backgroundColor: Color(0xff8B5CF6),
+                      backgroundColor: primaryColor,
                       radius: 60,
                       backgroundImage: user.imageUrl != null
                           ? NetworkImage(user.imageUrl!)
@@ -85,8 +85,8 @@ class ProfileScreen extends GetView<ProfileController> {
                 onTap: () {
                   Get.defaultDialog(
                     title: "Confirm Logout",
-                    titleStyle: const TextStyle(
-                      color: Color(0xff8B5CF6),
+                    titleStyle: TextStyle(
+                      color: primaryColor,
                       fontWeight: FontWeight.bold,
                     ),
                     middleText: "Are you sure you want to logout?",
@@ -95,7 +95,7 @@ class ProfileScreen extends GetView<ProfileController> {
                     cancelTextColor: Colors.black54,
                     textConfirm: "Logout",
                     confirmTextColor: Colors.white,
-                    buttonColor: Color(0xff8B5CF6),
+                    buttonColor: primaryColor,
                     radius: 12,
                     onConfirm: () {
                       Get.back();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/quiz_model.dart';
+import '../../utils/helpers.dart';
 import 'quiz_controller.dart';
 
 class QuizScreen extends GetView<QuizController> {
@@ -10,7 +11,8 @@ class QuizScreen extends GetView<QuizController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: Obx(() {
           if (controller.status.value == QuizStatus.ready) {
             return Text(
@@ -21,16 +23,20 @@ class QuizScreen extends GetView<QuizController> {
               ),
             );
           }
-          return const Text('Loading Test...');
+          return const Text(
+            'Loading Test...',
+            style: TextStyle(color: Colors.black),
+          );
         }),
         centerTitle: true,
       ),
+      extendBodyBehindAppBar: true,
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF9F7CC5), Color(0xFFFFFFFF)],
+            colors: [primaryColor, const Color(0xFFFFFFFF)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -38,13 +44,16 @@ class QuizScreen extends GetView<QuizController> {
         child: Obx(() {
           switch (controller.status.value) {
             case QuizStatus.loading:
-              return const Center(child: CircularProgressIndicator());
+              return Center(
+                child: CircularProgressIndicator(color: primaryColor),
+              );
             case QuizStatus.error:
               return Center(child: Text(controller.errorMessage.value));
             case QuizStatus.ready:
             case QuizStatus.submitting:
               return Column(
                 children: [
+                  const SizedBox(height: kToolbarHeight + 20),
                   Expanded(
                     child: PageView.builder(
                       controller: controller.pageController,
@@ -102,9 +111,9 @@ class QuizScreen extends GetView<QuizController> {
   Widget _buildBottomButton(BuildContext context) {
     return Obx(() {
       if (controller.status.value == QuizStatus.submitting) {
-        return const Padding(
-          padding: EdgeInsets.all(24),
-          child: CircularProgressIndicator(),
+        return Padding(
+          padding: const EdgeInsets.all(24),
+          child: CircularProgressIndicator(color: primaryColor),
         );
       }
       final isLastQuestion =
@@ -124,10 +133,19 @@ class QuizScreen extends GetView<QuizController> {
           width: MediaQuery.of(context).size.width * .33,
           height: MediaQuery.of(context).size.height * .06,
           child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: primaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
             onPressed: isAnswered
                 ? (isLastQuestion ? controller.submitTest : controller.nextPage)
                 : null,
-            child: Text(isLastQuestion ? 'Submit Answers' : 'Next Question'),
+            child: Text(
+              isLastQuestion ? 'Submit Answers' : 'Next Question',
+              style: const TextStyle(color: Colors.white),
+            ),
           ),
         ),
       );

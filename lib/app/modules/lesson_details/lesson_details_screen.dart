@@ -4,6 +4,7 @@ import 'package:student_app2/app/modules/lesson_details/widget/lesson_video_play
 import 'package:url_launcher/url_launcher.dart';
 import '../../data/models/comment_model.dart';
 import '../../routes/app_pages.dart';
+import '../../utils/helpers.dart';
 import '../lesson_details/lesson_details_controller.dart';
 
 class LessonDetailsScreen extends GetView<LessonDetailsController> {
@@ -23,7 +24,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
         backgroundColor: Colors.white,
         title: Text(
           controller.lesson.title,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -67,10 +68,10 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
             ),
             SliverPersistentHeader(
               delegate: _SliverAppBarDelegate(
-                const TabBar(
-                  indicatorColor: Color(0xff8B5CF6),
+                TabBar(
+                  indicatorColor: primaryColor,
                   labelColor: Colors.black,
-                  tabs: [
+                  tabs: const [
                     Tab(text: 'Summary (PDF)'),
                     Tab(text: 'Comments'),
                   ],
@@ -85,6 +86,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
           onPressed: () => _showStartTestDialog(
             context,
             controller.lesson.id,
@@ -107,9 +109,9 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
         content: const Text('What would you like to do?'),
         actions: <Widget>[
           TextButton(
-            child: const Text(
+            child: Text(
               'Browse Questions',
-              style: TextStyle(color: Color(0xff8B5CF6)),
+              style: TextStyle(color: primaryColor),
             ),
             onPressed: () {
               Get.back();
@@ -122,6 +124,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
           SizedBox(
             width: MediaQuery.of(context).size.width * .33,
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
               child: const Text('Start Graded Test'),
               onPressed: () {
                 Get.back();
@@ -155,15 +158,15 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
         Expanded(
           child: Obx(() {
             if (controller.isLoading.value) {
-              return const Center(
-                child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
+              return Center(
+                child: CircularProgressIndicator(color: primaryColor),
               );
             }
             if (controller.commentList.isEmpty) {
               return const Center(child: Text('Be the first to comment!'));
             }
             return RefreshIndicator(
-              color: Color(0xff8B5CF6),
+              color: primaryColor,
               onRefresh: controller.fetchComments,
               child: ListView.builder(
                 padding: const EdgeInsets.all(8.0),
@@ -193,7 +196,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                   hintText: c.replyingToCommentId == null
                       ? 'Add a public comment...'
                       : 'Replying...',
-                  hintStyle: TextStyle(color: Color(0xff8B5CF6)),
+                  hintStyle: TextStyle(color: primaryColor),
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(25.0)),
                   ),
@@ -203,12 +206,12 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
             Obx(
               () => IconButton(
                 icon: c.isPostingComment.value
-                    ? const SizedBox(
+                    ? SizedBox(
                         width: 24,
                         height: 24,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          color: Color(0xff8B5CF6),
+                          color: primaryColor,
                         ),
                       )
                     : const Icon(Icons.send),
@@ -238,7 +241,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: Color(0xff8B5CF6),
+                  backgroundColor: primaryColor,
                   child: Text(
                     comment.user.name.substring(0, 1).toUpperCase(),
                     style: TextStyle(color: Colors.white),
@@ -247,9 +250,9 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                 const SizedBox(width: 10),
                 Text(
                   comment.user.name,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff8B5CF6),
+                    color: primaryColor,
                   ),
                 ),
                 const Spacer(),
@@ -263,10 +266,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                 if (!isReply)
                   TextButton(
                     onPressed: () => controller.startReplying(comment.id),
-                    child: const Text(
-                      'Reply',
-                      style: TextStyle(color: Color(0xff8B5CF6)),
-                    ),
+                    child: Text('Reply', style: TextStyle(color: primaryColor)),
                   ),
                 if (!isReply)
                   Obx(
@@ -275,17 +275,17 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                           ? null
                           : () => controller.fetchReplies(comment),
                       child: comment.isLoadingReplies.value
-                          ? const SizedBox(
+                          ? SizedBox(
                               width: 16,
                               height: 16,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,
-                                color: Color(0xff8B5CF6),
+                                color: primaryColor,
                               ),
                             )
                           : Text(
                               'View replies',
-                              style: TextStyle(color: Color(0xff8B5CF8B5CF6)),
+                              style: TextStyle(color: primaryColor),
                             ),
                     ),
                   ),

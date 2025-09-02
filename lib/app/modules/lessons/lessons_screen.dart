@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/lesson_model.dart';
 import '../../routes/app_pages.dart';
+import '../../utils/helpers.dart';
 import 'lessons_controller.dart';
 
 class LessonsScreen extends GetView<LessonsController> {
@@ -16,7 +17,7 @@ class LessonsScreen extends GetView<LessonsController> {
         centerTitle: true,
         title: Text(
           'Lessons by ${controller.teacherName}',
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(20.0),
@@ -31,9 +32,7 @@ class LessonsScreen extends GetView<LessonsController> {
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(
-            child: CircularProgressIndicator(color: Color(0xff8B5CF6)),
-          );
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         if (controller.lessonList.isEmpty) {
           return const Center(
@@ -43,7 +42,7 @@ class LessonsScreen extends GetView<LessonsController> {
           );
         }
         return RefreshIndicator(
-          color: Color(0xff8B5CF6),
+          color: primaryColor,
           onRefresh: controller.fetchLessons,
           child: ListView.builder(
             itemCount: controller.lessonList.length,
@@ -73,9 +72,9 @@ class LessonsScreen extends GetView<LessonsController> {
         content: const Text('What would you like to do?'),
         actions: <Widget>[
           TextButton(
-            child: const Text(
+            child: Text(
               'Browse Questions',
-              style: TextStyle(color: Color(0xff8B5CF6)),
+              style: TextStyle(color: primaryColor),
             ),
             onPressed: () {
               Get.back();
@@ -86,10 +85,7 @@ class LessonsScreen extends GetView<LessonsController> {
             },
           ),
           TextButton(
-            child: const Text(
-              'Watch Video',
-              style: TextStyle(color: Color(0xff8B5CF)),
-            ),
+            child: Text('Watch Video', style: TextStyle(color: primaryColor)),
             onPressed: () {
               Get.back();
               Get.toNamed(Routes.LESSON_DETAILS, arguments: {'lesson': lesson});
@@ -100,6 +96,7 @@ class LessonsScreen extends GetView<LessonsController> {
             width: MediaQuery.of(context).size.height * .1,
 
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: primaryColor),
               child: const Text('Start Test'),
               onPressed: () {
                 Get.back();

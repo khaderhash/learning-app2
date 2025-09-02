@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:student_app2/app/modules/auth/widget/CustomTextField.dart';
+import '../../utils/helpers.dart';
 import 'auth_controller.dart';
 
 class SignUpScreen extends GetView<AuthController> {
@@ -12,18 +13,15 @@ class SignUpScreen extends GetView<AuthController> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text(
+        title: Text(
           'Sign Up',
-          style: TextStyle(
-            color: Color(0xff8B5CF6),
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator(color: primaryColor));
         }
         return Padding(
           padding: const EdgeInsets.all(16.0),
@@ -56,7 +54,7 @@ class SignUpScreen extends GetView<AuthController> {
                 height: MediaQuery.of(context).size.height * .06,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xff8B5CF6),
+                    backgroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -67,9 +65,9 @@ class SignUpScreen extends GetView<AuthController> {
               ),
               TextButton(
                 onPressed: () => Get.back(),
-                child: const Text(
+                child: Text(
                   'Already have an account? Login',
-                  style: TextStyle(color: Color(0xff8B5CF6)),
+                  style: TextStyle(color: primaryColor),
                 ),
               ),
             ],
