@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/quiz_model.dart';
 import '../../data/providers/quiz_provider.dart';
-import 'quiz_result_screen.dart';
+import '../../routes/app_pages.dart';
 
 enum QuizStatus { loading, ready, submitting, finished, error }
 
@@ -66,12 +66,13 @@ class QuizController extends GetxController {
   Future<void> submitTest() async {
     try {
       status.value = QuizStatus.submitting;
-      final result = await _quizProvider.submitAnswers(
-        currentTestSession.testId,
-        answers,
-      );
+      await _quizProvider.submitAnswers(currentTestSession.testId, answers);
       status.value = QuizStatus.finished;
-      Get.off(() => QuizResultScreen(result: result));
+
+      Get.offNamed(
+        Routes.QUIZ_RESULT,
+        arguments: {'testId': currentTestSession.testId},
+      );
     } catch (e) {
       errorMessage.value = e.toString();
       status.value = QuizStatus.error;
