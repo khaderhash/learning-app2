@@ -13,6 +13,8 @@ import '../modules/main_screen/main_screen.dart';
 import '../modules/main_screen/main_screen_binding.dart';
 import '../modules/notifications/notifications_binding.dart';
 import '../modules/notifications/notifications_screen.dart';
+import '../modules/quiz/quiz_result_binding.dart';
+import '../modules/quiz/quiz_result_screen.dart';
 import '../modules/subjects/subjects_binding.dart';
 import '../modules/subjects/subjects_screen.dart';
 import '../modules/teacher_profile/teacher_profile_binding.dart';
@@ -129,6 +131,16 @@ class AppPages {
       name: _Paths.NOTIFICATIONS,
       page: () => const NotificationsScreen(),
       binding: NotificationsBinding(),
+    ),
+    GetPage(
+      name: _Paths.QUIZ,
+      page: () => const QuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: _Paths.QUIZ_RESULT,
+      page: () => const QuizResultScreen(),
+      binding: QuizResultBinding(),
     ),
   ];
 }

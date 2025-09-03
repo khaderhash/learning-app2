@@ -22,6 +22,7 @@ abstract class Routes {
   static const CHALLENGES = _Paths.CHALLENGES;
   static const TEACHER_PROFILE = _Paths.TEACHER_PROFILE;
   static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
+  static const QUIZ_RESULT = _Paths.QUIZ_RESULT;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const CHALLENGE_QUIZ = '/challenge-quiz';
   static const TEACHER_PROFILE = '/teacher-profile';
   static const NOTIFICATIONS = '/notifications';
+  static const QUIZ_RESULT = '/quiz-result';
 }

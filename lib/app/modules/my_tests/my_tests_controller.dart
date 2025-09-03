@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/test_history_model.dart';
 import '../../data/providers/test_history_provider.dart';
+import '../../routes/app_pages.dart';
 import '../quiz/quiz_result_screen.dart';
 
 class MyTestsController extends GetxController {
@@ -36,7 +37,7 @@ class MyTestsController extends GetxController {
     try {
       final result = await _provider.getTestResult(testId);
       Get.back();
-      Get.to(() => QuizResultScreen(result: result));
+      Get.toNamed(Routes.QUIZ_RESULT, arguments: {'testId': testId});
     } catch (e) {
       Get.back();
       Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);

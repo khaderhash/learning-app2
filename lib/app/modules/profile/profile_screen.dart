@@ -18,7 +18,6 @@ class ProfileScreen extends GetView<ProfileController> {
         centerTitle: true,
         title: Text(
           'Profile',
-
           style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
         ),
       ),
@@ -65,7 +64,6 @@ class ProfileScreen extends GetView<ProfileController> {
               _buildProfileInfoTile('Email', user.email),
               _buildProfileInfoTile('Phone', user.phone),
               const Divider(height: 40),
-
               ListTile(
                 leading: const Icon(Icons.logout, color: Colors.red),
                 title: const Text(

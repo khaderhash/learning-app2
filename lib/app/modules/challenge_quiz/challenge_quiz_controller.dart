@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../data/models/quiz_model.dart';
 import '../../data/providers/challenge_provider.dart';
 import '../../data/providers/points_provider.dart';
+import '../../routes/app_pages.dart';
 import '../quiz/quiz_result_screen.dart';
 
 enum ChallengeQuizStatus { loading, ready, submitting, finished, error }
@@ -48,12 +49,9 @@ class ChallengeQuizController extends GetxController {
   Future<void> submitChallenge() async {
     try {
       status.value = ChallengeQuizStatus.submitting;
-      final result = await _provider.submitChallenge(challengeId, answers);
-
-      final points = await _pointsProvider.getStudentPoints();
-
+      await _provider.submitChallenge(challengeId, answers);
       status.value = ChallengeQuizStatus.finished;
-      Get.off(() => QuizResultScreen(result: result, points: points));
+      Get.offNamed(Routes.QUIZ_RESULT, arguments: {'testId': challengeId});
     } catch (e) {
       errorMessage.value = e.toString();
       status.value = ChallengeQuizStatus.error;

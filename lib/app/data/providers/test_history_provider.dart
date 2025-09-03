@@ -37,6 +37,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import '../../services/storage_service.dart';
+import '../models/answer_review_model.dart';
 import '../models/test_history_model.dart';
 
 class TestHistoryProvider {
@@ -77,6 +78,18 @@ class TestHistoryProvider {
       throw Exception(
         jsonDecode(response.body)['message'] ?? 'Failed to get test result',
       );
+    }
+  }
+
+  Future<List<AnswerReview>> getTestReview(int testId) async {
+    final url = Uri.parse('$_baseUrl/get/solution/test/$testId');
+    final response = await http.get(url, headers: await _getHeaders());
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      return data.map((json) => AnswerReview.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load test review');
     }
   }
 }
