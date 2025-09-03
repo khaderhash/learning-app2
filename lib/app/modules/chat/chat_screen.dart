@@ -108,7 +108,7 @@ class ChatScreen extends GetView<ChatController> {
             ),
             const SizedBox(height: 4),
             Text(
-              DateFormat('hh:mm a').format(message.createdAt),
+              DateFormat('hh:mm a').format(message.createdAt.toLocal()),
               style: TextStyle(
                 color: isMe ? Colors.white70 : Colors.black54,
                 fontSize: 10,
