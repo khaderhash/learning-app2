@@ -1,3 +1,5 @@
+import './user_model.dart';
+
 class Teacher {
   final int id;
   final String name;
@@ -9,7 +11,17 @@ class Teacher {
     return Teacher(
       id: json['id'],
       name: json['name'],
-      profileImageUrl: json['teacher_image'],
+      profileImageUrl: json['user_image'],
+    );
+  }
+
+  UserModel toUserModel() {
+    return UserModel(
+      id: id,
+      name: name,
+      imageUrl: profileImageUrl,
+      email: '',
+      phone: '',
     );
   }
 }

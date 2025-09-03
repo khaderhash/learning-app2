@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../data/models/teacher_model.dart';
+import '../../data/providers/chat_provider.dart';
 import '../../routes/app_pages.dart';
 import '../../utils/helpers.dart';
 import 'teachers_controller.dart';
@@ -123,6 +124,16 @@ class TeachersScreen extends GetView<TeachersController> {
                       : () => controller.requestToJoin(teacher.id),
                 ),
               ),
+            ),
+            OutlinedButton.icon(
+              icon: Icon(Icons.message_outlined, color: primaryColor),
+              label: Text(
+                'Send Message',
+                style: TextStyle(color: primaryColor),
+              ),
+              onPressed: () {
+                controller.startConversation(teacher);
+              },
             ),
           ],
         ),

@@ -7,6 +7,10 @@ import '../modules/challenge/challenges_binding.dart';
 import '../modules/challenge/challenges_screen.dart';
 import '../modules/challenge_quiz/challenge_quiz_binding.dart';
 import '../modules/challenge_quiz/challenge_quiz_screen.dart';
+import '../modules/chat/chat_binding.dart';
+import '../modules/chat/chat_screen.dart';
+import '../modules/conversations/conversations_binding.dart';
+import '../modules/conversations/conversations_screen.dart';
 import '../modules/create_custom_test/create_custome_binding.dart';
 import '../modules/create_custom_test/create_custome_test_screen.dart';
 import '../modules/main_screen/main_screen.dart';
@@ -141,6 +145,16 @@ class AppPages {
       name: _Paths.QUIZ_RESULT,
       page: () => const QuizResultScreen(),
       binding: QuizResultBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONVERSATIONS,
+      page: () => const ConversationsScreen(),
+      binding: ConversationsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHAT,
+      page: () => const ChatScreen(),
+      binding: ChatBinding(),
     ),
   ];
 }

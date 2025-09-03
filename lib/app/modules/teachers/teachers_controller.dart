@@ -1,13 +1,17 @@
 import 'package:get/get.dart';
 import '../../data/models/teacher_model.dart';
+import '../../data/providers/chat_provider.dart';
 import '../../data/providers/teacher_provider.dart';
 import '../../data/providers/subject_provider.dart';
 import 'package:flutter/material.dart'
     '';
 
+import '../../routes/app_pages.dart';
+
 class TeachersController extends GetxController {
   final TeacherProvider _teacherProvider = TeacherProvider();
   final SubjectProvider _subjectProvider = SubjectProvider();
+  final ChatProvider _chatProvider = ChatProvider();
 
   final int subjectId = Get.arguments['subjectId'];
   final String subjectTitle = Get.arguments['subjectTitle'];
@@ -62,6 +66,29 @@ class TeachersController extends GetxController {
       );
     } finally {
       isRequestingJoin.value = false;
+    }
+  }
+
+  Future<void> startConversation(Teacher teacher) async {
+    try {
+      Get.dialog(
+        const Center(child: CircularProgressIndicator()),
+        barrierDismissible: false,
+      );
+
+      final conversationId = await _chatProvider.createConversation(teacher.id);
+
+      Get.back();
+      Get.toNamed(
+        Routes.CHAT,
+        arguments: {
+          'conversationId': conversationId,
+          'otherUser': teacher.toUserModel(),
+        },
+      );
+    } catch (e) {
+      Get.back();
+      Get.snackbar('Error', 'Could not start conversation: ${e.toString()}');
     }
   }
 }

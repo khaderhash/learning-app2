@@ -75,6 +75,15 @@ class DashboardScreen extends GetView<DashboardController> {
                       Get.toNamed(Routes.CHALLENGES);
                     },
                   ),
+                  _buildDashboardCard(
+                    context,
+                    icon: Icons.chat_bubble_outline,
+                    title: 'My Chats',
+                    subtitle: 'View your conversations with teachers',
+                    onTap: () async {
+                      await Get.toNamed(Routes.CONVERSATIONS);
+                    },
+                  ),
                 ],
               ),
             );

@@ -8,3 +8,4 @@ String formatRelativeTime(String dateString) {
 }
 
 final Color primaryColor = Color(0xFF008080);
+final Color secondColor = Color(0xFF20B2AA);
