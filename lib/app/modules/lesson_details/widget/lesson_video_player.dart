@@ -26,17 +26,23 @@ class _LessonVideoPlayerState extends State<LessonVideoPlayer> {
       correctedUrl = correctedUrl.replaceAll('localhost', '10.0.2.2');
     }
 
+    print("🎬 Trying to play video from URL: $correctedUrl");
+
     _controller = VideoPlayerController.networkUrl(Uri.parse(correctedUrl))
-      ..initialize()
-          .then((_) {
-            setState(() {});
-          })
-          .catchError((error) {
-            print("Video Player Initialization Error: $error");
-          });
+      ..initialize().then((_) {
+        print("✅ Video initialized successfully!");
+        setState(() {});
+      }).catchError((error) {
+        print("❌ Video Player Initialization Error: $error");
+      });
 
     _controller.addListener(() {
       if (!mounted) return;
+
+      if (_controller.value.hasError) {
+        print("⚠️ Video Player Error: ${_controller.value.errorDescription}");
+      }
+
       if (_isPlaying != _controller.value.isPlaying) {
         setState(() {
           _isPlaying = _controller.value.isPlaying;

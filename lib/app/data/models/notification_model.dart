@@ -1,4 +1,4 @@
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get.dart';
 
 class NotificationModel {
   final String id;
@@ -18,18 +18,22 @@ class NotificationModel {
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
     final data = json['data'] as Map<String, dynamic>;
     String title = 'New Notification';
-    String body = data['message'] ?? 'You have a new notification.';
+    String body = data['message'] ?? 'You have a new update.';
 
     if (data.containsKey('challenge_title')) {
-      title = 'New Challenge Added!';
+      title = 'New Challenge: ${data['challenge_title']}';
       body =
           data['message'] ??
-          'Teacher ${data['teacher_name']} created a new challenge: "${data['challenge_title']}"';
+          'A new challenge has been added by ${data['teacher_name']}.';
+    } else if (data.containsKey('commenter_name') &&
+        data.containsKey('lesson_title')) {
+      title = 'New Comment on "${data['lesson_title']}"';
+      body = '${data['commenter_name']}: "${data['comment_content']}"';
     } else if (data.containsKey('student_name') &&
         data.containsKey('subject_title')) {
       title = 'New Subscription Request';
       body =
-          'Student ${data['student_name']} requested to join the subject "${data['subject_title']}".';
+          '${data['student_name']} wants to join your subject: "${data['subject_title']}".';
     }
 
     return NotificationModel(

@@ -44,7 +44,8 @@ class ChatScreen extends GetView<ChatController> {
                 itemCount: controller.messageList.length,
                 itemBuilder: (context, index) {
                   final message = controller.messageList[index];
-                  final bool isMe = message.senderId == controller.currentUserId;
+                  final bool isMe =
+                      message.senderId == controller.currentUserId;
                   return _buildMessageBubble(message, isMe, primaryColor);
                 },
               );

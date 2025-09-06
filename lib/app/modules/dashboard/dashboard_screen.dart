@@ -97,15 +97,20 @@ class DashboardScreen extends GetView<DashboardController> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text("Welcome back,", style: TextStyle(fontSize: 16)),
-            Text(
-              "$userName!",
-              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-            ),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Welcome back,", style: TextStyle(fontSize: 16)),
+              Text(
+                "$userName!",
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
         Stack(
           clipBehavior: Clip.none,
