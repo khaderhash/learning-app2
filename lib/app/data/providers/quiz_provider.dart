@@ -57,11 +57,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import '../../services/storage_service.dart';
+import '../../utils/helpers.dart';
 import '../models/quiz_model.dart';
 import '../models/quiz_models.dart';
 
 class QuizProvider {
-  final String _baseUrl = 'http://10.0.2.2:8000/api';
   final StorageService _storageService = Get.find<StorageService>();
 
   Future<Map<String, String>> _getHeaders() async {
@@ -73,7 +73,7 @@ class QuizProvider {
     List<int> lessonIds,
     int questionsCount,
   ) async {
-    final url = Uri.parse('$_baseUrl/create/test/student');
+    final url = Uri.parse('$baseUrl/create/test/student');
     var request = http.MultipartRequest('POST', url)
       ..headers.addAll(await _getHeaders())
       ..fields['lesson_ids'] = jsonEncode(lessonIds)
@@ -100,7 +100,7 @@ class QuizProvider {
     int testId,
     Map<int, int> answers,
   ) async {
-    final url = Uri.parse('$_baseUrl/tests/$testId/submit');
+    final url = Uri.parse('$baseUrl/tests/$testId/submit');
     var request = http.MultipartRequest('POST', url)
       ..headers.addAll(await _getHeaders());
     answers.forEach((key, value) {

@@ -37,11 +37,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import '../../services/storage_service.dart';
+import '../../utils/helpers.dart';
 import '../models/answer_review_model.dart';
 import '../models/test_history_model.dart';
 
 class TestHistoryProvider {
-  final String _baseUrl = 'http://10.0.2.2:8000/api';
   final StorageService _storageService = Get.find<StorageService>();
 
   Future<Map<String, String>> _getHeaders() async {
@@ -50,7 +50,7 @@ class TestHistoryProvider {
   }
 
   Future<List<TestHistory>> getUserTests() async {
-    final url = Uri.parse('$_baseUrl/get/tests/user');
+    final url = Uri.parse('$baseUrl/get/tests/user');
     final response = await http.get(url, headers: await _getHeaders());
 
     if (response.statusCode == 200) {
@@ -65,7 +65,7 @@ class TestHistoryProvider {
   }
 
   Future<Map<String, int>> getTestResult(int testId) async {
-    final url = Uri.parse('$_baseUrl/tests/$testId/result');
+    final url = Uri.parse('$baseUrl/tests/$testId/result');
     final response = await http.get(url, headers: await _getHeaders());
 
     if (response.statusCode == 200) {
@@ -82,7 +82,7 @@ class TestHistoryProvider {
   }
 
   Future<List<AnswerReview>> getTestReview(int testId) async {
-    final url = Uri.parse('$_baseUrl/get/solution/test/$testId');
+    final url = Uri.parse('$baseUrl/get/solution/test/$testId');
     final response = await http.get(url, headers: await _getHeaders());
 
     if (response.statusCode == 200) {

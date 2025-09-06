@@ -42,11 +42,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import '../../services/storage_service.dart';
+import '../../utils/helpers.dart';
 import '../models/quiz_model.dart';
 import '../models/teacher_model.dart';
 
 class FavoritesProvider {
-  final String _baseUrl = 'http://10.0.2.2:8000/api';
   final StorageService _storageService = Get.find<StorageService>();
 
   Future<Map<String, String>> _getHeaders() async {
@@ -55,7 +55,7 @@ class FavoritesProvider {
   }
 
   Future<List<Teacher>> getFavoriteTeachers() async {
-    final url = Uri.parse('$_baseUrl/get/teachers/favorite/student');
+    final url = Uri.parse('$baseUrl/get/teachers/favorite/student');
     final response = await http.get(url, headers: await _getHeaders());
     if (response.statusCode == 200) {
       final List<dynamic> teachersJson = jsonDecode(response.body)['teachers'];
@@ -70,7 +70,7 @@ class FavoritesProvider {
   }
 
   Future<List<TestSession>> getFavoriteTests(int teacherId) async {
-    final url = Uri.parse('$_baseUrl/get/tests/from/favorite/$teacherId');
+    final url = Uri.parse('$baseUrl/get/tests/from/favorite/$teacherId');
     final response = await http.get(url, headers: await _getHeaders());
     if (response.statusCode == 200) {
       final List<dynamic> testsJson = jsonDecode(response.body)['test '];

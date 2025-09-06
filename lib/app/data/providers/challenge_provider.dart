@@ -2,11 +2,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:get/get.dart';
 import '../../services/storage_service.dart';
+import '../../utils/helpers.dart';
 import '../models/challenge_model.dart';
 import '../models/quiz_model.dart';
 
 class ChallengeProvider {
-  final String _baseUrl = 'http://10.0.2.2:8000/api';
   final StorageService _storageService = Get.find<StorageService>();
 
   Future<Map<String, String>> _getHeaders() async {
@@ -15,7 +15,7 @@ class ChallengeProvider {
   }
 
   Future<List<Challenge>> getChallenges() async {
-    final url = Uri.parse('$_baseUrl/get/challenges/student');
+    final url = Uri.parse('$baseUrl/get/challenges/student');
     final response = await http.get(url, headers: await _getHeaders());
     if (response.statusCode == 200) {
       final List<dynamic> challengesJson = jsonDecode(response.body);
@@ -29,7 +29,7 @@ class ChallengeProvider {
   }
 
   Future<List<Question>> getChallengeQuestions(int challengeId) async {
-    final url = Uri.parse('$_baseUrl/get/challenge/$challengeId');
+    final url = Uri.parse('$baseUrl/get/challenge/$challengeId');
     final response = await http.get(url, headers: await _getHeaders());
     if (response.statusCode == 200) {
       final List<dynamic> questionsJson = jsonDecode(response.body);
@@ -46,7 +46,7 @@ class ChallengeProvider {
     int challengeId,
     Map<int, int> answers,
   ) async {
-    final url = Uri.parse('$_baseUrl/submit/challenge/$challengeId');
+    final url = Uri.parse('$baseUrl/submit/challenge/$challengeId');
     var request = http.MultipartRequest('POST', url)
       ..headers.addAll(await _getHeaders());
     answers.forEach((key, value) {

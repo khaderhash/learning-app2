@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import '../../services/storage_service.dart';
+import '../../utils/helpers.dart';
 import '../models/comment_model.dart';
 
 class CommentProvider {
-  final String _baseUrl = 'http://10.0.2.2:8000/api';
   final StorageService _storageService = Get.find<StorageService>();
 
   Future<Map<String, String>> _getHeaders() async {
@@ -14,7 +14,7 @@ class CommentProvider {
   }
 
   Future<List<Comment>> getComments(int lessonId) async {
-    final url = Uri.parse('$_baseUrl/get/comment/lesson/$lessonId');
+    final url = Uri.parse('$baseUrl/get/comment/lesson/$lessonId');
     final response = await http.get(url, headers: await _getHeaders());
 
     if (response.statusCode == 200) {
@@ -33,7 +33,7 @@ class CommentProvider {
     required String content,
     int? parentId,
   }) async {
-    final url = Uri.parse('$_baseUrl/add/comment');
+    final url = Uri.parse('$baseUrl/add/comment');
     var request = http.MultipartRequest('POST', url)
       ..headers.addAll(await _getHeaders())
       ..fields['lesson_id'] = lessonId.toString()
@@ -51,7 +51,7 @@ class CommentProvider {
   }
 
   Future<List<Comment>> getReplies(int commentId) async {
-    final url = Uri.parse('$_baseUrl/get/replies/comment/$commentId');
+    final url = Uri.parse('$baseUrl/get/replies/comment/$commentId');
     final response = await http.get(url, headers: await _getHeaders());
 
     if (response.statusCode == 200) {

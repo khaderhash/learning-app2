@@ -79,8 +79,8 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       Get.snackbar(
+        'Error',
         'Login Failed',
-        e.toString(),
         snackPosition: SnackPosition.BOTTOM,
       );
     } finally {

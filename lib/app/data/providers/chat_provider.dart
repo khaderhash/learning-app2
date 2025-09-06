@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import '../../services/storage_service.dart';
+import '../../utils/helpers.dart';
 import '../models/conversation_model.dart';
 import '../models/message_model.dart';
 
 class ChatProvider {
-  final String _baseUrl = 'http://10.0.2.2:8000/api';
   final StorageService _storageService = Get.find<StorageService>();
 
   Future<Map<String, String>> _getHeaders() async {
@@ -15,7 +15,7 @@ class ChatProvider {
   }
 
   Future<List<Conversation>> getMyConversations() async {
-    final url = Uri.parse('$_baseUrl/get/my/coversation');
+    final url = Uri.parse('$baseUrl/get/my/coversation');
 
     try {
       print("Fetching conversations from: $url");
@@ -50,7 +50,7 @@ class ChatProvider {
   }
 
   Future<int> createConversation(int receiverId) async {
-    final url = Uri.parse('$_baseUrl/create/conversation');
+    final url = Uri.parse('$baseUrl/create/conversation');
     var request = http.MultipartRequest('POST', url)
       ..headers.addAll(await _getHeaders())
       ..fields['receiver_id'] = receiverId.toString();
@@ -63,7 +63,7 @@ class ChatProvider {
   }
 
   Future<Map<String, dynamic>> getMessagesWithUserId(int conversationId) async {
-    final url = Uri.parse('$_baseUrl/get/my/massage/$conversationId');
+    final url = Uri.parse('$baseUrl/get/my/massage/$conversationId');
     final response = await http.get(url, headers: await _getHeaders());
     if (response.statusCode == 200) {
       final responseData = jsonDecode(response.body);
@@ -78,7 +78,7 @@ class ChatProvider {
   }
 
   Future<void> sendMessage(int conversationId, String message) async {
-    final url = Uri.parse('$_baseUrl/send/message/$conversationId');
+    final url = Uri.parse('$baseUrl/send/message/$conversationId');
     var request = http.MultipartRequest('POST', url)
       ..headers.addAll(await _getHeaders())
       ..fields['message'] = message;
