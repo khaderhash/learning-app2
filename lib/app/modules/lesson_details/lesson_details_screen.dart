@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:student_app2/app/modules/lesson_details/widget/lesson_video_player.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:file_picker/file_picker.dart';
 import '../../data/models/comment_model.dart';
 import '../../routes/app_pages.dart';
 import '../../utils/helpers.dart';
@@ -244,7 +246,7 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
                   backgroundColor: primaryColor,
                   child: Text(
                     comment.user.name.substring(0, 1).toUpperCase(),
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -316,10 +318,12 @@ class LessonDetailsScreen extends GetView<LessonDetailsController> {
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   _SliverAppBarDelegate(this._tabBar);
   final TabBar _tabBar;
+
   @override
   double get minExtent => _tabBar.preferredSize.height;
   @override
   double get maxExtent => _tabBar.preferredSize.height;
+
   @override
   Widget build(
     BuildContext context,
@@ -333,7 +337,5 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
-  }
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) => false;
 }

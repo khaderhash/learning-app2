@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../utils/helpers.dart';
-class AuthProvider {
 
+class AuthProvider {
   Future<Map<String, dynamic>> register({
     required String name,
     required String email,

@@ -15,16 +15,40 @@ class NotificationProvider {
 
   Future<List<NotificationModel>> getNotifications() async {
     final url = Uri.parse('$baseUrl/notifications');
-    final response = await http.get(url, headers: await _getHeaders());
-    if (response.statusCode == 200) {
-      final List<dynamic> notificationsJson = jsonDecode(
-        response.body,
-      )['data']['data'];
-      return notificationsJson
-          .map((json) => NotificationModel.fromJson(json))
-          .toList();
-    } else {
-      throw Exception('Failed to load notifications');
+    try {
+      print("Fetching notifications...");
+      final response = await http.get(url, headers: await _getHeaders());
+      print("Notifications Response Status: ${response.statusCode}");
+      print("Notifications Response Body: ${response.body}");
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+        if (responseData.containsKey('data') && responseData['data'] is Map) {
+          final Map<String, dynamic> paginationObject = responseData['data'];
+          if (paginationObject.containsKey('data') &&
+              paginationObject['data'] is List) {
+            final List<dynamic> notificationsJson = paginationObject['data'];
+
+            if (notificationsJson.isEmpty) {
+              print("No notifications found in the response list.");
+              return [];
+            }
+
+            print(
+              "Found ${notificationsJson.length} notifications. Parsing...",
+            );
+            return notificationsJson
+                .map((json) => NotificationModel.fromJson(json))
+                .toList();
+          }
+        }
+        throw Exception("Unexpected JSON structure for notifications.");
+      } else {
+        throw Exception('Failed to load notifications');
+      }
+    } catch (e) {
+      print("Error in getNotifications: $e");
+      rethrow;
     }
   }
 

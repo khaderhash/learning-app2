@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 class NotificationModel {
   final String id;
@@ -17,23 +17,32 @@ class NotificationModel {
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
     final data = json['data'] as Map<String, dynamic>;
-    String title = 'New Notification';
-    String body = data['message'] ?? 'You have a new update.';
+    final type = json['type'] as String;
 
-    if (data.containsKey('challenge_title')) {
-      title = 'New Challenge: ${data['challenge_title']}';
-      body =
-          data['message'] ??
-          'A new challenge has been added by ${data['teacher_name']}.';
-    } else if (data.containsKey('commenter_name') &&
-        data.containsKey('lesson_title')) {
+    String title = 'New Notification';
+    String body = data['message'] ?? 'You have received a new update.';
+    if (type.contains('TeacherRequestStatusNotification')) {
+      final status = data['status'] ?? 'updated';
+      final subjectName = data['subject_name'] ?? 'a subject';
+
+      if (status == 'accepted') {
+        title = 'Subscription Approved!';
+        body = 'Your request to join "$subjectName" has been approved.';
+      } else {
+        title = 'Subscription Update';
+        body = 'Your request to join "$subjectName" has been rejected.';
+      }
+    } else if (type.contains('CommentNotification')) {
       title = 'New Comment on "${data['lesson_title']}"';
-      body = '${data['commenter_name']}: "${data['comment_content']}"';
-    } else if (data.containsKey('student_name') &&
-        data.containsKey('subject_title')) {
+      body = '${data['user_name']}: "${data['comment']}"';
+    } else if (type.contains('NewChallengeNotification')) {
+      title = 'New Challenge: ${data['challenge_title']}';
+      body = 'A new challenge has been added by ${data['teacher_name']}.';
+    } else if (type.contains('StudentSubjectRequestNotification')) {
       title = 'New Subscription Request';
       body =
-          '${data['student_name']} wants to join your subject: "${data['subject_title']}".';
+          data['message'] ??
+          '${data['student_name']} wants to join your subject: "${data['subject_name']}".';
     }
 
     return NotificationModel(
