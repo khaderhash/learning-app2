@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import '../../data/models/notification_model.dart';
 import '../../data/providers/notification_provider.dart';
+import '../../services/notification_service.dart';
 import '../dashboard/dashboard_controller.dart';
 
 class NotificationsController extends GetxController {
@@ -20,6 +21,15 @@ class NotificationsController extends GetxController {
       isLoading.value = true;
       final notifications = await _provider.getNotifications();
       notificationList.assignAll(notifications);
+
+      if (notifications.isNotEmpty) {
+        final latest = notifications.first;
+        LocalNotificationService.showNotification(
+          title: latest.title,
+          body: latest.body,
+        );
+      }
+
       Get.find<DashboardController>().fetchUnreadCount();
     } catch (e) {
       Get.snackbar('Error', e.toString());

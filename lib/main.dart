@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'app/routes/app_pages.dart';
 import 'app/services/auth_service.dart';
+import 'app/services/notification_service.dart';
 import 'app/services/storage_service.dart';
 
 void main() async {
@@ -24,7 +25,8 @@ void main() async {
   Get.put(storageService);
   Get.put(AuthService());
   await GetStorage.init();
-
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalNotificationService.init();
   runApp(MyApp(initialRoute: initialRoute));
 }
 
